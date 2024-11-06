@@ -6,3 +6,7 @@ venv/
 
 # Git credentials file
 Git.md
+
+# Database
+*.db
+*.sqlite
