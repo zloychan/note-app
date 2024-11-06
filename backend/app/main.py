@@ -5,6 +5,8 @@ from sqlalchemy.orm import Session
 from .database import engine, Base, get_db
 from . import models
 from . import schemas
+from .routers import auth
+
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -27,6 +29,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Add after existing middleware configuration
+app.include_router(auth.router)
 
 @app.get("/")
 async def root():

@@ -13,38 +13,33 @@ from app.database import Base, get_db
 from app.main import app
 
 # Test database configuration
-SQLALCHEMY_DATABASE_URL = "sqlite:///./test_notes.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 test_engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
 
-@pytest.fixture(scope="module")
+@pytest.fixture
 def db_session():
-    # Setup a database session for each test
+    # Create tables before each test
+    Base.metadata.create_all(bind=test_engine)
     db = TestingSessionLocal()
     try:
         yield db
     finally:
         db.close()
-
-@pytest.fixture(scope="module", autouse=True)
-def setup_teardown():
-    # Setup before tests
-    Base.metadata.create_all(bind=test_engine)
-    yield
-    # Teardown after tests
-    Base.metadata.drop_all(bind=test_engine)
+        # Drop tables after each test
+        Base.metadata.drop_all(bind=test_engine)
 
 @pytest.fixture
-def client():
-    # Override the dependency for testing
+def client(db_session):
     def override_get_db():
-        db = TestingSessionLocal()
         try:
-            yield db
+            yield db_session
         finally:
-            db.close()
+            db_session.close()
     
     app.dependency_overrides[get_db] = override_get_db
-    return TestClient(app)
+    yield TestClient(app)
+    # Added cleanup of dependency override
+    del app.dependency_overrides[get_db]
