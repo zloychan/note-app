@@ -13,18 +13,21 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
-    # Relationship with Notes
-    notes = relationship("Note", back_populates="owner", cascade="all, delete-orphan")
+    notes = relationship(
+        "Note",
+        back_populates="owner",
+        cascade="all, delete",
+        passive_deletes=False
+    )
 
 class Note(Base):
-      __tablename__ = "notes"
+    __tablename__ = "notes"
 
-      id = Column(Integer, primary_key=True, index=True)
-      title = Column(String(255), index=True)
-      content = Column(Text)
-      created_at = Column(DateTime(timezone=True), server_default=func.now())
-      updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-      owner_id = Column(Integer, ForeignKey("users.id"))
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(255), index=True)
+    content = Column(Text)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+    owner_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
 
-      # Relationship with User
-      owner = relationship("User", back_populates="notes")
+    owner = relationship("User", back_populates="notes")
