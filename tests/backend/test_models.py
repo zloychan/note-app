@@ -5,7 +5,15 @@ from app.models import User, Note
 
 @pytest.fixture(autouse=True)
 def cleanup_db(db_session):
+    db_session.rollback()
+    # Clear any existing data
+    db_session.query(Note).delete()
+    db_session.query(User).delete()
+    db_session.commit()
+    
     yield
+    
+    # Cleanup after test
     db_session.rollback()
     db_session.query(Note).delete()
     db_session.query(User).delete()
@@ -89,11 +97,12 @@ def test_unique_email_constraint(db_session):
 
 def test_cascade_delete(db_session):
     """Test that deleting a user also deletes their notes."""
-    # Create user and notes
+    # Create user
     user = User(email="user5@example.com", hashed_password="hashedpassword123")
     db_session.add(user)
     db_session.commit()
-
+    
+    # Create notes
     notes = [
         Note(title=f"Note {i}", content=f"Content {i}", owner_id=user.id)
         for i in range(3)
@@ -101,10 +110,20 @@ def test_cascade_delete(db_session):
     db_session.add_all(notes)
     db_session.commit()
 
-    # Delete user and verify notes are deleted
+    # Verify notes exist
+    note_count = db_session.query(Note).filter_by(owner_id=user.id).count()
+    assert note_count == 3
+
+    # Store user id for later verification
+    user_id = user.id
+
+    # Delete user
     db_session.delete(user)
     db_session.commit()
 
-    # Verify notes are deleted
-    remaining_notes = db_session.query(Note).filter_by(owner_id=user.id).all()
+    # Clear session
+    db_session.close()
+    
+    # Create new session for verification
+    remaining_notes = db_session.query(Note).filter_by(owner_id=user_id).all()
     assert len(remaining_notes) == 0
