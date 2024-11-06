@@ -6,8 +6,6 @@ kanban-plugin: board
 
 ## backlog
 
-- [ ] [[2.2. Set Up FastAPI Application]]
-- [ ] [[2.3. Database Configuration]]
 - [ ] [[2.4. Define Models]]
 - [ ] [[2.5. Create Schemas]]
 - [ ] [[2.6. Implement Authentication]]
@@ -51,7 +49,6 @@ kanban-plugin: board
 
 ## in prgress
 
-- [ ] [[2.1. Install Backend Dependencies]]
 
 
 ## done
@@ -61,6 +58,9 @@ kanban-plugin: board
 - [ ] [[1.3. Set Up Frontend Directory]]
 - [ ] [[1.4. Create .gitignore Files]]
 - [ ] [[1.5. Initial Commit]]
+- [ ] [[2.1. Install Backend Dependencies]]
+- [ ] [[2.2. Set Up FastAPI Application]]
+- [ ] [[2.3. Database Configuration]]
 
 
 
