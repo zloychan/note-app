@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from .database import engine, Base, get_db
 from . import models
 from . import schemas
-from .routers import auth
+from .routers import auth, notes
 
 
 # Create database tables
@@ -32,6 +32,7 @@ app.add_middleware(
 
 # Add after existing middleware configuration
 app.include_router(auth.router)
+app.include_router(notes.router)
 
 @app.get("/")
 async def root():
