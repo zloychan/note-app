@@ -4,6 +4,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 from .database import engine, Base, get_db
 from . import models
+from . import schemas
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
