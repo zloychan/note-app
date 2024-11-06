@@ -6,8 +6,6 @@ kanban-plugin: board
 
 ## backlog
 
-- [ ] [[2.4. Define Models]]
-- [ ] [[2.5. Create Schemas]]
 - [ ] [[2.6. Implement Authentication]]
 - [ ] [[2.7. Develop CRUD Operations for Notes]]
 - [ ] [[2.8. Test API Endpoints]]
@@ -49,6 +47,7 @@ kanban-plugin: board
 
 ## in prgress
 
+- [ ] [[2.5. Create Schemas]]
 
 
 ## done
@@ -61,6 +60,7 @@ kanban-plugin: board
 - [ ] [[2.1. Install Backend Dependencies]]
 - [ ] [[2.2. Set Up FastAPI Application]]
 - [ ] [[2.3. Database Configuration]]
+- [ ] [[2.4. Define Models]]
 
 
 

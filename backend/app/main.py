@@ -3,6 +3,7 @@ from starlette.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from .database import engine, Base, get_db
+from . import models
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
