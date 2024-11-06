@@ -6,7 +6,6 @@ kanban-plugin: board
 
 ## backlog
 
-- [ ] [[Epic 2 Backend Development]]
 - [ ] [[Epic 3 Frontend Development]]
 - [ ] [[Epic 4 API Integration]]
 - [ ] [[Epic 5 Testing]]
@@ -17,11 +16,12 @@ kanban-plugin: board
 
 ## in progreaa
 
-- [ ] [[Epic 1 Project Setup]]
+- [ ] [[Epic 2 Backend Development]]
 
 
 ## done
 
+- [ ] [[Epic 1 Project Setup]]
 
 
 
