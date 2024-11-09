@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "jest"
+    "test:unit": "jest --config jest.config.js"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
@@ -53,5 +53,47 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.vue$": "@vue/vue3-jest",
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "vue",
+      "js",
+      "json"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+      "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/tests/unit/__mocks__/fileMock.js"
+    },
+    "testMatch": [
+      "**/tests/unit/**/*.spec.[jt]s?(x)",
+      "**/__tests__/*.[jt]s?(x)"
+    ],
+    "testEnvironmentOptions": {
+      "customExportConditions": ["node", "node-addons"]
+    },
+    "setupFiles": [
+      "<rootDir>/tests/unit/setup/setup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/unit/setup/jest-setup.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,vue}",
+      "!src/main.js"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
 }
