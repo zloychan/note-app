@@ -6,7 +6,6 @@ kanban-plugin: board
 
 ## backlog
 
-- [ ] [[3.9. Style Components]]
 - [ ] [[4.1. Set Up API Configuration]]
 - [ ] [[4.2. Configure Authentication Interceptors]]
 - [ ] [[4.3. Implement Auth API Services]]
@@ -36,6 +35,7 @@ kanban-plugin: board
 
 ## in prgress
 
+- [ ] [[3.9. Style Components]]
 
 
 ## done

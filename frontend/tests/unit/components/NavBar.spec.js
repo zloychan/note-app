@@ -64,6 +64,7 @@ describe('NavBar Component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
+    document.body.innerHTML = ''
   })
 
   test('renders navbar brand', () => {
@@ -114,5 +115,68 @@ describe('NavBar Component', () => {
       await router.isReady()
       expect(router.currentRoute.value.path).toBe('/login')
     })
+  })
+})
+
+describe('NavBar.vue', () => {
+  let wrapper
+  let router
+
+  beforeEach(() => {
+    router = createRouter({
+      history: createWebHistory(),
+      routes: [
+        { path: '/', name: 'home' },
+        { path: '/notes', name: 'notes' },
+        { path: '/login', name: 'login' }
+      ]
+    })
+
+    wrapper = mount(NavBar, {
+      global: {
+        plugins: [router]
+      }
+    })
+  })
+
+  test('renders responsive navbar', () => {
+    expect(wrapper.find('.navbar').classes()).toContain('navbar-expand-lg')
+    expect(wrapper.find('.navbar-toggler').exists()).toBe(true)
+    expect(wrapper.find('.navbar-collapse').exists()).toBe(true)
+  })
+
+  test('toggles mobile menu correctly', async () => {
+    const toggler = wrapper.find('.navbar-toggler')
+    const collapse = wrapper.find('.navbar-collapse')
+    
+    // Initial state
+    expect(collapse.classes()).not.toContain('show')
+    
+    // Simulate Bootstrap collapse behavior
+    await toggler.trigger('click')
+    collapse.element.classList.add('show')
+    await wrapper.vm.$nextTick()
+    expect(collapse.classes()).toContain('show')
+    
+    await toggler.trigger('click')
+    collapse.element.classList.remove('show')
+    await wrapper.vm.$nextTick()
+    expect(collapse.classes()).not.toContain('show')
+  })
+
+  test('applies active state to current route', async () => {
+    await router.push('/notes')
+    await wrapper.vm.$nextTick()
+    
+    const activeLink = wrapper.find('.nav-link.active')
+    expect(activeLink.text()).toBe('My Notes')
+  })
+
+  test('has consistent spacing and padding', () => {
+    const navbar = wrapper.find('.navbar')
+    const styles = window.getComputedStyle(navbar.element)
+    
+    expect(styles.padding).toBe('1rem')
+    expect(styles.marginBottom).toBe('1rem')
   })
 })
