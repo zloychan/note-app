@@ -1,0 +1,48 @@
+/* Import variables */
+@import './variables.css';
+
+/* Global styles */
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  color: var(--dark-color);
+  background-color: var(--light-color);
+}
+
+/* Custom button styles */
+.btn-custom {
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm) var(--spacing-base);
+  transition: all 0.3s ease;
+}
+
+/* Custom card styles */
+.card-custom {
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-base);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom form styles */
+.form-control-custom {
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--secondary-color);
+}
+
+/* Responsive container padding */
+.container {
+  padding: var(--spacing-base);
+}
+
+/* Custom transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

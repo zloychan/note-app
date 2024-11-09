@@ -17,5 +17,6 @@ module.exports = {
   testEnvironmentOptions: {
     customExportConditions: ['node', 'node-addons']
   },
-  setupFiles: ['<rootDir>/tests/unit/setup/setup.js']
+  setupFiles: ['<rootDir>/tests/unit/setup/setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/tests/unit/setup/jest-setup.js']
 }

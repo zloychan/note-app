@@ -6,7 +6,6 @@ kanban-plugin: board
 
 ## backlog
 
-- [ ] [[3.3. Implement Global Styles]]
 - [ ] [[3.4. Create Navigation Bar Component]]
 - [ ] [[3.5. Develop Authentication Views]]
 - [ ] [[3.6. Handle Authentication State]]
@@ -42,7 +41,6 @@ kanban-plugin: board
 
 ## in prgress
 
-- [ ] [[3.2. Set Up Project Structure]]
 
 
 ## done
@@ -61,6 +59,8 @@ kanban-plugin: board
 - [ ] [[2.7. Develop CRUD Operations for Notes]]
 - [ ] [[2.8. Test API Endpoints]]
 - [ ] [[3.1. Initialize Vue.js Application]]
+- [ ] [[3.2. Set Up Project Structure]]
+- [ ] [[3.3. Implement Global Styles]]
 
 
 
