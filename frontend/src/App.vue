@@ -1,26 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <RouterLink class="navbar-brand" to="/">Notes App</RouterLink>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <RouterLink class="nav-link" active-class="active" to="/">Home</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" active-class="active" to="/login">Login</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" active-class="active" to="/register">Register</RouterLink>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <NavBar />
     <main class="container mt-4">
       <RouterView />
     </main>
@@ -28,13 +8,14 @@
 </template>
 
 <script>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import NavBar from '@/components/NavBar.vue'
 
 export default {
   name: 'App',
   components: {
-    RouterLink,
-    RouterView
+    RouterView,
+    NavBar
   }
 }
 </script>
