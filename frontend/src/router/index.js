@@ -3,6 +3,7 @@ import HomeView from '../views/Home.vue'
 import LoginView from '../views/Login.vue'
 import RegisterView from '../views/Register.vue'
 import NotesView from '../views/Notes.vue'
+import auth from '@/stores/auth'
 
 export const routes = [
   {
@@ -33,13 +34,15 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem('token')
-  if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/login')
-  } else {
-    next()
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.requiresAuth) {
+    const isAuthenticated = await auth.checkAuth()
+    if (!isAuthenticated) {
+      next('/login')
+      return
+    }
   }
+  next()
 })
 
 export default router

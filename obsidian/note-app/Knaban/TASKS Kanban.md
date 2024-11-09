@@ -6,7 +6,6 @@ kanban-plugin: board
 
 ## backlog
 
-- [ ] [[3.6. Handle Authentication State]]
 - [ ] [[3.7. Create Notes Management View]]
 - [ ] [[3.8. Implement Route Guards]]
 - [ ] [[3.9. Style Components]]
@@ -61,6 +60,7 @@ kanban-plugin: board
 - [ ] [[3.3. Implement Global Styles]]
 - [ ] [[3.4. Create Navigation Bar Component]]
 - [ ] [[3.5. Develop Authentication Views]]
+- [ ] [[3.6. Handle Authentication State]]
 
 
 

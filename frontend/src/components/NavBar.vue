@@ -41,33 +41,20 @@
   </template>
   
   <script>
-  import { RouterLink } from 'vue-router'
-  import { ref, onMounted } from 'vue'
+  import { computed } from 'vue'
   import { useRouter } from 'vue-router'
+  import auth from '@/stores/auth'
   
   export default {
     name: 'NavBar',
-    components: {
-      RouterLink
-    },
     setup() {
-      const isAuthenticated = ref(false)
       const router = useRouter()
+      const isAuthenticated = computed(() => !!auth.state.token)
   
-      const checkAuth = () => {
-        isAuthenticated.value = !!localStorage.getItem('token')
-      }
-  
-      const handleLogout = () => {
-        localStorage.removeItem('token')
-        isAuthenticated.value = false
+      const handleLogout = async () => {
+        await auth.logout()
         router.push('/login')
       }
-  
-      onMounted(() => {
-        checkAuth()
-        window.addEventListener('storage', checkAuth)
-      })
   
       return {
         isAuthenticated,

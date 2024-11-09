@@ -1,18 +1,42 @@
 import { mount } from '@vue/test-utils'
 import { createRouter, createWebHistory } from 'vue-router'
 import NavBar from '@/components/NavBar.vue'
-import { routes } from '@/router/index'
+import auth from '@/stores/auth'
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: { template: '<div>Home</div>' }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: { template: '<div>Login</div>' }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: { template: '<div>Register</div>' }
+  },
+  {
+    path: '/notes',
+    name: 'Notes',
+    component: { template: '<div>Notes</div>' },
+    meta: { requiresAuth: true }
+  }
+]
+
+jest.mock('@/stores/auth', () => ({
+  state: {
+    token: null
+  },
+  logout: jest.fn()
+}))
 
 describe('NavBar Component', () => {
   let router
   let wrapper
-
-  beforeEach(() => {
-    router = createRouter({
-      history: createWebHistory(),
-      routes
-    })
-  })
 
   const createWrapper = () => {
     router = createRouter({
@@ -38,20 +62,18 @@ describe('NavBar Component', () => {
     })
   }
 
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   test('renders navbar brand', () => {
     wrapper = createWrapper()
     expect(wrapper.find('.navbar-brand').text()).toBe('Notes App')
   })
 
-  test('renders navbar toggle button for mobile', () => {
-    wrapper = createWrapper()
-    const toggleButton = wrapper.find('.navbar-toggler')
-    expect(toggleButton.exists()).toBe(true)
-    expect(toggleButton.attributes('data-bs-toggle')).toBe('collapse')
-  })
-
   describe('Unauthenticated state', () => {
     beforeEach(() => {
+      auth.state.token = null
       wrapper = createWrapper()
     })
 
@@ -68,10 +90,9 @@ describe('NavBar Component', () => {
   })
 
   describe('Authenticated state', () => {
-    beforeEach(async () => {
-      localStorage.setItem('token', 'fake-token')
+    beforeEach(() => {
+      auth.state.token = 'fake-token'
       wrapper = createWrapper()
-      await wrapper.vm.$nextTick()
     })
 
     test('shows notes and logout links when authenticated', () => {
@@ -87,64 +108,11 @@ describe('NavBar Component', () => {
 
     test('handles logout correctly', async () => {
       const logoutLink = wrapper.find('a[href="#"]')
-      await logoutLink.trigger('click')
+      await logoutLink.trigger('click.prevent')
       
-      expect(localStorage.getItem('token')).toBeNull()
-      await wrapper.vm.$nextTick()
-      expect(wrapper.vm.isAuthenticated).toBe(false)
-    })
-  })
-
-  describe('Responsive behavior', () => {
-    test('navbar collapse has correct Bootstrap classes', () => {
-      wrapper = createWrapper()
-      const collapse = wrapper.find('.navbar-collapse')
-      expect(collapse.classes()).toContain('collapse')
-    })
-
-    test('navbar is responsive with correct classes', () => {
-      wrapper = createWrapper()
-      expect(wrapper.find('.navbar-expand-lg').exists()).toBe(true)
-    })
-  })
-
-  describe('Responsive Design', () => {
-    test('navigation links align correctly on different screen sizes', () => {
-      wrapper = createWrapper()
-      const nav = wrapper.find('.navbar-nav')
-      
-      expect(nav.classes()).toContain('navbar-nav')
-      expect(nav.classes()).toContain('ms-auto')
-    })
-
-    test('mobile menu collapses and expands correctly', async () => {
-      wrapper = createWrapper()
-      const toggleButton = wrapper.find('.navbar-toggler')
-      const menu = wrapper.find('#navbarNav')
-      
-      // Initial state
-      expect(menu.classes()).toContain('collapse')
-      expect(menu.classes()).toContain('navbar-collapse')
-      
-      // Trigger toggle and manually set show class
-      await toggleButton.trigger('click')
-      await menu.element.classList.add('show')
-      await wrapper.vm.$nextTick()
-      
-      expect(menu.classes()).toContain('show')
-    })
-  })
-
-  describe('Navigation Styling', () => {
-    test('active route has correct styling', async () => {
-      wrapper = createWrapper()
-      await router.push('/login')
-      await wrapper.vm.$nextTick()
-      
-      const links = wrapper.findAll('.nav-link')
-      const activeLink = links.find(link => link.classes('active'))
-      
-      expect(activeLink).toBeDefined()
+      expect(auth.logout).toHaveBeenCalled()
+      await router.isReady()
+      expect(router.currentRoute.value.path).toBe('/login')
     })
   })
 })

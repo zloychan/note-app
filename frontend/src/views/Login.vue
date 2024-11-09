@@ -25,6 +25,9 @@
           {{ errors.password }}
         </div>
       </div>
+      <div class="alert alert-danger" v-if="errors.general">
+        {{ errors.general }}
+      </div>
       <button type="submit" :disabled="loading">
         {{ loading ? 'Logging in...' : 'Login' }}
       </button>
@@ -33,21 +36,23 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import auth from '@/stores/auth'
 
 export default {
   name: 'LoginView',
   setup() {
     const router = useRouter()
-    const loading = ref(false)
+    const loading = computed(() => auth.state.loading)
     const form = reactive({
       email: '',
       password: ''
     })
     const errors = reactive({
       email: '',
-      password: ''
+      password: '',
+      general: ''
     })
 
     const validateForm = () => {
@@ -70,17 +75,20 @@ export default {
     const handleSubmit = async () => {
       if (!validateForm()) return
 
-      loading.value = true
       try {
-        // API call will be implemented later
-        console.log('Form submitted:', form)
-        await new Promise(resolve => setTimeout(resolve, 100)) // Simulate API call
-        localStorage.setItem('token', 'dummy-token')
-        router.push('/notes')
+        const success = await auth.login({
+          username: form.email,
+          password: form.password
+        })
+        
+        if (success) {
+          router.push('/notes')
+        } else {
+          errors.general = auth.state.error || 'Login failed. Please try again.'
+        }
       } catch (error) {
+        errors.general = 'An unexpected error occurred. Please try again.'
         console.error('Login error:', error)
-      } finally {
-        loading.value = false
       }
     }
 
