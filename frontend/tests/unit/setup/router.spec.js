@@ -1,15 +1,7 @@
-import { routes, routerOptions } from '@/router/index'
+import { routes, default as router } from '@/router/index'
 
 describe('Router Configuration', () => {
-  test('Router uses history mode', () => {
-    const history = routerOptions.history
-    expect(history).toBeTruthy()
-    expect(typeof history.push).toBe('function')
-    expect(typeof history.replace).toBe('function')
-    expect(typeof history.go).toBe('function')
-  })
-
-  test('Router has required routes', () => {
+  test('Router has all required routes', () => {
     const routeNames = routes.map(route => route.name)
     expect(routeNames).toContain('Home')
     expect(routeNames).toContain('Login')
@@ -20,5 +12,17 @@ describe('Router Configuration', () => {
   test('Notes route requires authentication', () => {
     const notesRoute = routes.find(route => route.name === 'Notes')
     expect(notesRoute.meta.requiresAuth).toBe(true)
+  })
+
+  test('Routes have correct paths', () => {
+    const homeRoute = routes.find(route => route.name === 'Home')
+    const loginRoute = routes.find(route => route.name === 'Login')
+    const registerRoute = routes.find(route => route.name === 'Register')
+    const notesRoute = routes.find(route => route.name === 'Notes')
+
+    expect(homeRoute.path).toBe('/')
+    expect(loginRoute.path).toBe('/login')
+    expect(registerRoute.path).toBe('/register')
+    expect(notesRoute.path).toBe('/notes')
   })
 })

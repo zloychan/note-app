@@ -18,7 +18,6 @@ kanban-plugin: board
 - [ ] [[Epic 3 Frontend Development]]
 
 
-
 ## done
 
 - [ ] [[Epic 1 Project Setup]]

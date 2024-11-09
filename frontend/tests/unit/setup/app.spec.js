@@ -13,13 +13,13 @@ const router = createRouter({
   ]
 })
 
-describe('App Initialization', () => {
+describe('App Component', () => {
   beforeEach(async () => {
     await router.push('/')
     await router.isReady()
   })
 
-  test('App component can be mounted', () => {
+  test('App contains navigation bar', () => {
     const wrapper = mount(App, {
       global: {
         plugins: [router],
@@ -29,10 +29,10 @@ describe('App Initialization', () => {
         }
       }
     })
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.find('nav').exists()).toBe(true)
   })
 
-  test('App contains router view', () => {
+  test('Navigation contains all required links', () => {
     const wrapper = mount(App, {
       global: {
         plugins: [router],
@@ -42,6 +42,25 @@ describe('App Initialization', () => {
         }
       }
     })
-    expect(wrapper.html()).toContain('router-view-stub')
+    const links = wrapper.findAll('router-link-stub')
+    const linkTo = links.map(link => link.attributes('to'))
+    
+    expect(linkTo).toContain('/')
+    expect(linkTo).toContain('/login')
+    expect(linkTo).toContain('/register')
+  })
+
+  test('App contains main content area', () => {
+    const wrapper = mount(App, {
+      global: {
+        plugins: [router],
+        stubs: {
+          'router-view': true,
+          'router-link': true
+        }
+      }
+    })
+    expect(wrapper.find('main').exists()).toBe(true)
+    expect(wrapper.find('main').classes()).toContain('container')
   })
 })

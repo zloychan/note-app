@@ -1,44 +1,40 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Register from '../views/Register.vue'
-import Notes from '../views/Notes.vue'
+import HomeView from '../views/Home.vue'
+import LoginView from '../views/Login.vue'
+import RegisterView from '../views/Register.vue'
+import NotesView from '../views/Notes.vue'
 
 export const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: HomeView
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: LoginView
   },
   {
     path: '/register',
     name: 'Register',
-    component: Register
+    component: RegisterView
   },
   {
     path: '/notes',
     name: 'Notes',
-    component: Notes,
+    component: NotesView,
     meta: { requiresAuth: true }
   }
 ]
 
-export const routerOptions = {
+const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-}
+})
 
-const router = createRouter(routerOptions)
-
-// Navigation guard for protected routes
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem('token')
-  
   if (to.meta.requiresAuth && !isAuthenticated) {
     next('/login')
   } else {
