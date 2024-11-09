@@ -6,14 +6,6 @@ kanban-plugin: board
 
 ## backlog
 
-- [ ] [[3.2. Set Up Project Structure]]
-- [ ] [[3.3. Implement Global Styles]]
-- [ ] [[3.4. Create Navigation Bar Component]]
-- [ ] [[3.5. Develop Authentication Views]]
-- [ ] [[3.6. Handle Authentication State]]
-- [ ] [[3.7. Create Notes Management View]]
-- [ ] [[3.8. Implement Route Guards]]
-- [ ] [[3.9. Style Components]]
 - [ ] [[4.1. Set Up API Configuration]]
 - [ ] [[4.2. Configure Authentication Interceptors]]
 - [ ] [[4.3. Implement Auth API Services]]
@@ -43,8 +35,6 @@ kanban-plugin: board
 
 ## in prgress
 
-- [ ] [[3.1. Initialize Vue.js Application]]
-
 
 
 ## done
@@ -62,7 +52,15 @@ kanban-plugin: board
 - [ ] [[2.6. Implement Authentication]]
 - [ ] [[2.7. Develop CRUD Operations for Notes]]
 - [ ] [[2.8. Test API Endpoints]]
-
+- [ ] [[3.1. Initialize Vue.js Application]]
+- [ ] [[3.2. Set Up Project Structure]]
+- [ ] [[3.3. Implement Global Styles]]
+- [ ] [[3.4. Create Navigation Bar Component]]
+- [ ] [[3.5. Develop Authentication Views]]
+- [ ] [[3.6. Handle Authentication State]]
+- [ ] [[3.7. Create Notes Management View]]
+- [ ] [[3.8. Implement Route Guards]]
+- [ ] [[3.9. Style Components]]
 
 
 

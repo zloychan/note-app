@@ -15,14 +15,13 @@ kanban-plugin: board
 
 ## in progreaa
 
-- [ ] [[Epic 3 Frontend Development]]
-
 
 
 ## done
 
 - [ ] [[Epic 1 Project Setup]]
 - [ ] [[Epic 2 Backend Development]]
+- [ ] [[Epic 3 Frontend Development]]
 
 
 
