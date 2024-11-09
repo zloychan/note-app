@@ -13,21 +13,21 @@ Description: Develop the backend API using FastAPI, implementing user authentica
 - Create `main.py` as the entry point of the application.
 - Configure the FastAPI instance and include middleware (e.g., CORS).
 
-- [ ] [[2.3. Database Configuration]]
+- [x] [[2.3. Database Configuration]]
 
 - Set up `database.py` to manage database connections using SQLAlchemy.
 - Configure SQLite as the database engine for development.
 
-- [ ] [[2.4. Define Models]]
+- [x] [[2.4. Define Models]]
 
 - Create `models.py` with SQLAlchemy models for `User` and `Note`.
 - Establish relationships between models.
 
-- [ ] [[2.5. Create Schemas]]
+- [x] [[2.5. Create Schemas]]
 
 - Define Pydantic models in `schemas.py` for data validation and serialization.
 
-- [ ] [[2.6. Implement Authentication]]
+- [x] [[2.6. Implement Authentication]]
 
 - Create `auth.py` for handling authentication logic.
 - Implement password hashing and JWT token generation.
