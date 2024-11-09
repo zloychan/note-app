@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/stores/auth.js</title>
+    <title>Code coverage report for src/utils/authGuard.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/stores</a> auth.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/utils</a> authGuard.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.46% </span>
+                <span class="strong">55.55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/41</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">30% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>3/10</span>
+                <span class='fraction'>25/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>4/8</span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>8/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.02% </span>
+                <span class="strong">40% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>2/5</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">55.81% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/39</span>
+                <span class='fraction'>24/43</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -148,84 +148,92 @@
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -233,92 +241,99 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { reactive, readonly } from 'vue'
-import api from '@/services/api'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ref } from 'vue'
+import auth from '@/stores/auth'
+import { jwtDecode } from 'jwt-decode'
 &nbsp;
-const state = reactive({
-  token: localStorage.getItem('token') || null,
-  user: null,
-  loading: false,
-  error: null
-})
+// Reactive state for auth checking
+const isCheckingAuth = ref(false)
 &nbsp;
-const actions = {
-  setToken(token) {
-    state.token = token
-    if (token) {
-      localStorage.setItem('token', token)
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    } else <span class="missing-if-branch" title="else path not taken" >E</span>{
-<span class="cstat-no" title="statement not covered" >      localStorage.removeItem('token')</span>
-<span class="cstat-no" title="statement not covered" >      delete api.defaults.headers.common['Authorization']</span>
-    }
-  },
-&nbsp;
-  setUser(user) {
-    state.user = user
-  },
-&nbsp;
-  async login(credentials) {
-    state.loading = true
-    state.error = null
-    try {
-      await new Promise(resolve =&gt; setTimeout(resolve, 100))
-      const dummyToken = 'dummy-token'
-      this.setToken(dummyToken)
-      this.setUser({ email: credentials.email })
-      return true
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >      state.error = error.response?.data?.message || 'Login failed'</span>
-<span class="cstat-no" title="statement not covered" >      return false</span>
-    } finally {
-      state.loading = false
-    }
-  },
-&nbsp;
-<span class="fstat-no" title="function not covered" >  as</span>ync register(credentials) {
-<span class="cstat-no" title="statement not covered" >    state.loading = true</span>
-<span class="cstat-no" title="statement not covered" >    state.error = null</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-      // Simulate API call and use credentials
-<span class="cstat-no" title="statement not covered" >      await new Promise(<span class="fstat-no" title="function not covered" >re</span>solve =&gt; <span class="cstat-no" title="statement not covered" >setTimeout(resolve, 100))</span></span>
-      // TODO: Replace with actual API call
-<span class="cstat-no" title="statement not covered" >      await api.post('/auth/register', credentials)</span>
-<span class="cstat-no" title="statement not covered" >      return true</span>
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >      state.error = error.response?.data?.message || 'Registration failed'</span>
-<span class="cstat-no" title="statement not covered" >      return false</span>
-    } finally {
-<span class="cstat-no" title="statement not covered" >      state.loading = false</span>
-    }
-  },
-&nbsp;
-<span class="fstat-no" title="function not covered" >  as</span>ync logout() {
-<span class="cstat-no" title="statement not covered" >    this.setToken(null)</span>
-<span class="cstat-no" title="statement not covered" >    this.setUser(null)</span>
-  },
-&nbsp;
-<span class="fstat-no" title="function not covered" >  as</span>ync checkAuth() {
-<span class="cstat-no" title="statement not covered" >    if (!state.token) {</span>
-<span class="cstat-no" title="statement not covered" >      return false</span>
-    }
-    
-<span class="cstat-no" title="statement not covered" >    try {</span>
-      // TODO: Replace with actual API call
-      const response = <span class="cstat-no" title="statement not covered" >await api.get('/auth/me')</span>
-<span class="cstat-no" title="statement not covered" >      this.setUser(response.data)</span>
-<span class="cstat-no" title="statement not covered" >      return true</span>
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >      this.logout()</span>
-<span class="cstat-no" title="statement not covered" >      return false</span>
-    }
+// Check if token is expired
+const isTokenExpired = (token) =&gt; {
+  if (!token) return true
+  try {
+    const decoded = jwtDecode(token)
+    const currentTime = Date.now() / 1000
+    return decoded.exp &lt; currentTime
+  } catch (error) {
+    console.error('Token validation error:', error)
+    return true
   }
 }
 &nbsp;
-export default {
-  state: readonly(state),
-  ...actions
-}</pre></td></tr></table></pre>
+// Validate current authentication status
+const validateAuth = async () =&gt; {
+  isCheckingAuth.value = true
+  try {
+    const token = auth.state.token
+    
+    // Check if token exists and is not expired
+    if (!token || isTokenExpired(token)) {
+      auth.logout()
+      return false
+    }
+&nbsp;
+    // Verify token with backend
+    const isValid = await auth.checkAuth()
+    if (!isValid) {
+      auth.logout()
+      return false
+    }
+&nbsp;
+    return true
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.error('Auth validation error:', error)</span>
+<span class="cstat-no" title="statement not covered" >    auth.logout()</span>
+<span class="cstat-no" title="statement not covered" >    return false</span>
+  } finally {
+    isCheckingAuth.value = false
+  }
+}
+&nbsp;
+// Check if user can access protected route
+const requireAuth = <span class="fstat-no" title="function not covered" >as</span>ync (to, from, next) =&gt; {
+<span class="cstat-no" title="statement not covered" >  if (to.matched.some(<span class="fstat-no" title="function not covered" >re</span>cord =&gt; <span class="cstat-no" title="statement not covered" >record.meta.requiresAuth)</span>) {</span>
+<span class="cstat-no" title="statement not covered" >    isCheckingAuth.value = true</span>
+<span class="cstat-no" title="statement not covered" >    try {</span>
+      const isAuthenticated = <span class="cstat-no" title="statement not covered" >await validateAuth()</span>
+<span class="cstat-no" title="statement not covered" >      if (!isAuthenticated) {</span>
+<span class="cstat-no" title="statement not covered" >        next({ </span>
+          path: '/login',
+          query: { redirect: to.fullPath }
+        })
+<span class="cstat-no" title="statement not covered" >        return</span>
+      }
+<span class="cstat-no" title="statement not covered" >      next()</span>
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >      console.error('Navigation guard error:', error)</span>
+<span class="cstat-no" title="statement not covered" >      next('/login')</span>
+    } finally {
+<span class="cstat-no" title="statement not covered" >      isCheckingAuth.value = false</span>
+    }
+  } else {
+<span class="cstat-no" title="statement not covered" >    next()</span>
+  }
+}
+&nbsp;
+// Handle authentication for API requests
+const getAuthHeader = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+  const token = <span class="cstat-no" title="statement not covered" >auth.state.token</span>
+<span class="cstat-no" title="statement not covered" >  if (token &amp;&amp; !isTokenExpired(token)) {</span>
+<span class="cstat-no" title="statement not covered" >    return `Bearer ${token}`</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return null</span>
+}
+&nbsp;
+export {
+  isCheckingAuth,
+  validateAuth,
+  requireAuth,
+  getAuthHeader,
+  isTokenExpired
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

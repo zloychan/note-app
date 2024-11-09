@@ -3,55 +3,37 @@ import HomeView from '../views/Home.vue'
 import LoginView from '../views/Login.vue'
 import RegisterView from '../views/Register.vue'
 import NotesView from '../views/Notes.vue'
-import auth from '@/stores/auth'
+import ProtectedRoute from '@/components/ProtectedRoute.vue'
 
 export const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomeView,
-    meta: {
-      title: 'Home',
-      requiresAuth: false
-    }
+    component: HomeView
   },
   {
     path: '/login',
     name: 'Login',
     component: LoginView,
-    meta: {
-      title: 'Login',
-      requiresAuth: false,
-      redirectIfAuth: true
-    }
+    meta: { requiresGuest: true }
   },
   {
     path: '/register',
     name: 'Register',
     component: RegisterView,
-    meta: {
-      title: 'Register',
-      requiresAuth: false,
-      redirectIfAuth: true
-    }
+    meta: { requiresGuest: true }
   },
   {
     path: '/notes',
     name: 'Notes',
-    component: NotesView,
-    meta: {
-      title: 'My Notes',
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'NotFound',
-    component: () => import('../views/NotFound.vue'),
-    meta: {
-      title: 'Page Not Found',
-      requiresAuth: false
-    }
+    component: {
+      render() {
+        return h(ProtectedRoute, null, {
+          default: () => h(NotesView)
+        })
+      }
+    },
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -61,38 +43,38 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  // Set document title
-  document.title = `${to.meta.title} - Notes App`
-
   try {
+    // Check if route requires authentication
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+    const requiresGuest = to.matched.some(record => record.meta.requiresGuest)
+    
+    // Verify authentication status
     const isAuthenticated = await auth.checkAuth()
 
-    // Handle authentication requirements
-    if (to.meta.requiresAuth && !isAuthenticated) {
-      next({ 
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
-      return
+    // Handle protected routes
+    if (requiresAuth) {
+      if (!isAuthenticated) {
+        next({
+          path: '/login',
+          query: { redirect: to.fullPath }
+        })
+        return
+      }
     }
 
-    // Redirect authenticated users from login/register pages
-    if (to.meta.redirectIfAuth && isAuthenticated) {
+    // Handle guest-only routes (login/register)
+    if (requiresGuest && isAuthenticated) {
       next('/notes')
       return
     }
 
+    // Proceed with navigation
     next()
   } catch (error) {
-    console.error('Navigation error:', error)
+    console.error('Navigation guard error:', error)
+    auth.logout()
     next('/login')
   }
-})
-
-// Add route transition handling
-router.afterEach(() => {
-  // Scroll to top after route change
-  window.scrollTo(0, 0)
 })
 
 export default router
