@@ -1,4 +1,6 @@
+import { h } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 import HomeView from '../views/Home.vue'
 import LoginView from '../views/Login.vue'
 import RegisterView from '../views/Register.vue'
@@ -43,32 +45,26 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  const auth = useAuthStore()
+  
   try {
-    // Check if route requires authentication
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
     const requiresGuest = to.matched.some(record => record.meta.requiresGuest)
-    
-    // Verify authentication status
     const isAuthenticated = await auth.checkAuth()
 
-    // Handle protected routes
-    if (requiresAuth) {
-      if (!isAuthenticated) {
-        next({
-          path: '/login',
-          query: { redirect: to.fullPath }
-        })
-        return
-      }
+    if (requiresAuth && !isAuthenticated) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+      return
     }
 
-    // Handle guest-only routes (login/register)
     if (requiresGuest && isAuthenticated) {
       next('/notes')
       return
     }
 
-    // Proceed with navigation
     next()
   } catch (error) {
     console.error('Navigation guard error:', error)

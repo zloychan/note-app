@@ -1,58 +1,45 @@
 <template>
   <div>
-    <template v-if="loading">
-      <div data-test="loading-spinner" class="d-flex justify-content-center align-items-center py-5">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    </template>
-    <template v-else-if="error">
-      <div data-test="error-message" class="alert alert-danger" role="alert">
-        {{ error }}
-      </div>
-    </template>
-    <template v-else>
-      <slot></slot>
-    </template>
+    <div v-if="loading" data-test="loading-spinner" class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div v-else-if="error" data-test="error-message" class="alert alert-danger">
+      {{ error }}
+    </div>
+    <slot v-else></slot>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
 export default defineComponent({
   name: 'ProtectedRoute',
-  
   setup() {
     const router = useRouter()
     const auth = useAuthStore()
     const loading = ref(true)
-    const error = ref<string | null>(null)
+    const error = ref(null)
 
-    const checkAuth = async () => {
+    const checkAuthentication = async () => {
       try {
-        loading.value = true
         const isAuthenticated = await auth.checkAuth()
         if (!isAuthenticated) {
-          await router.push({
+          router.push({
             path: '/login',
             query: { redirect: router.currentRoute.value.fullPath }
           })
         }
       } catch (err) {
-        error.value = 'Authentication error occurred. Please try logging in again.'
-        console.error('Protected route auth check failed:', err)
+        error.value = 'Authentication error'
       } finally {
         loading.value = false
       }
     }
 
-    onMounted(() => {
-      checkAuth()
-    })
+    onMounted(checkAuthentication)
 
     return {
       loading,

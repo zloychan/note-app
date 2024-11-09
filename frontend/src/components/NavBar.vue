@@ -16,45 +16,34 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink class="nav-link" active-class="active" to="/">Home</RouterLink>
+            <RouterLink class="nav-link" to="/" active-class="active">Home</RouterLink>
           </li>
-          <Transition name="fade" mode="out-in">
-            <template v-if="!isAuthenticated">
-              <div class="d-flex">
-                <li class="nav-item">
-                  <RouterLink class="nav-link" active-class="active" to="/login">Login</RouterLink>
-                </li>
-                <li class="nav-item">
-                  <RouterLink class="nav-link" active-class="active" to="/register">Register</RouterLink>
-                </li>
-              </div>
-            </template>
-            <template v-else>
-              <div class="d-flex">
-                <li class="nav-item">
-                  <RouterLink class="nav-link" active-class="active" to="/notes">My Notes</RouterLink>
-                </li>
-                <li class="nav-item">
-                  <a 
-                    class="nav-link" 
-                    href="#" 
-                    @click.prevent="handleLogout"
-                    :class="{ 'disabled': isLoggingOut }"
-                  >
-                    <span v-if="isLoggingOut" class="spinner-border spinner-border-sm me-1"></span>
-                    Logout
-                  </a>
-                </li>
-              </div>
-            </template>
-          </Transition>
+          <template v-if="!isAuthenticated">
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/login" active-class="active">Login</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/register" active-class="active">Register</RouterLink>
+            </li>
+          </template>
+          <template v-else>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/notes" active-class="active">My Notes</RouterLink>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" @click.prevent="handleLogout" 
+                 :class="{ disabled: isLoggingOut }">
+                {{ isLoggingOut ? 'Logging out...' : 'Logout' }}
+              </a>
+            </li>
+          </template>
         </ul>
       </div>
     </div>
   </nav>
 </template>
 
-<script lang="ts">
+<script>
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import auth from '@/stores/auth'
@@ -118,26 +107,5 @@ export default {
 .nav-link.disabled {
   pointer-events: none;
   opacity: 0.7;
-}
-
-/* Fade transition for auth state changes */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-@media (max-width: 991.98px) {
-  .navbar-collapse {
-    padding: 1rem 0;
-  }
-  
-  .nav-item {
-    margin: 0.5rem 0;
-  }
 }
 </style>
