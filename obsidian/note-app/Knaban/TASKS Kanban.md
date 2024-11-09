@@ -35,7 +35,6 @@ kanban-plugin: board
 
 ## in prgress
 
-- [ ] [[3.9. Style Components]]
 
 
 ## done
@@ -61,6 +60,7 @@ kanban-plugin: board
 - [ ] [[3.6. Handle Authentication State]]
 - [ ] [[3.7. Create Notes Management View]]
 - [ ] [[3.8. Implement Route Guards]]
+- [ ] [[3.9. Style Components]]
 
 
 
