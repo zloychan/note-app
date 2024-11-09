@@ -6,7 +6,6 @@ kanban-plugin: board
 
 ## backlog
 
-- [ ] [[3.7. Create Notes Management View]]
 - [ ] [[3.8. Implement Route Guards]]
 - [ ] [[3.9. Style Components]]
 - [ ] [[4.1. Set Up API Configuration]]
@@ -38,6 +37,7 @@ kanban-plugin: board
 
 ## in prgress
 
+- [ ] [[3.7. Create Notes Management View]]
 
 
 ## done

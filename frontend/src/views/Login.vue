@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from 'vue'
+import { reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import auth from '@/stores/auth'
 

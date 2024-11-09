@@ -9,23 +9,49 @@ export const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomeView
+    component: HomeView,
+    meta: {
+      title: 'Home',
+      requiresAuth: false
+    }
   },
   {
     path: '/login',
     name: 'Login',
-    component: LoginView
+    component: LoginView,
+    meta: {
+      title: 'Login',
+      requiresAuth: false,
+      redirectIfAuth: true
+    }
   },
   {
     path: '/register',
     name: 'Register',
-    component: RegisterView
+    component: RegisterView,
+    meta: {
+      title: 'Register',
+      requiresAuth: false,
+      redirectIfAuth: true
+    }
   },
   {
     path: '/notes',
     name: 'Notes',
     component: NotesView,
-    meta: { requiresAuth: true }
+    meta: {
+      title: 'My Notes',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue'),
+    meta: {
+      title: 'Page Not Found',
+      requiresAuth: false
+    }
   }
 ]
 
@@ -35,14 +61,38 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  if (to.meta.requiresAuth) {
+  // Set document title
+  document.title = `${to.meta.title} - Notes App`
+
+  try {
     const isAuthenticated = await auth.checkAuth()
-    if (!isAuthenticated) {
-      next('/login')
+
+    // Handle authentication requirements
+    if (to.meta.requiresAuth && !isAuthenticated) {
+      next({ 
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
       return
     }
+
+    // Redirect authenticated users from login/register pages
+    if (to.meta.redirectIfAuth && isAuthenticated) {
+      next('/notes')
+      return
+    }
+
+    next()
+  } catch (error) {
+    console.error('Navigation error:', error)
+    next('/login')
   }
-  next()
+})
+
+// Add route transition handling
+router.afterEach(() => {
+  // Scroll to top after route change
+  window.scrollTo(0, 0)
 })
 
 export default router

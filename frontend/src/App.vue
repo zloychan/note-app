@@ -2,7 +2,11 @@
   <div id="app">
     <NavBar />
     <main class="container mt-4">
-      <RouterView />
+      <router-view v-slot="{ Component }">
+        <transition name="route" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </main>
   </div>
 </template>
@@ -35,5 +39,22 @@ export default {
 .container {
   max-width: 1200px;
   padding: var(--spacing-base);
+}
+
+.route-enter-from,
+.route-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.route-enter-active,
+.route-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.route-enter-to,
+.route-leave-from {
+  opacity: 1;
+  transform: translateX(0);
 }
 </style>

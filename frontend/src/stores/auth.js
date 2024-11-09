@@ -13,7 +13,6 @@ const actions = {
     state.token = token
     if (token) {
       localStorage.setItem('token', token)
-      // Set token in axios defaults for authenticated requests
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
     } else {
       localStorage.removeItem('token')
@@ -29,10 +28,7 @@ const actions = {
     state.loading = true
     state.error = null
     try {
-      // For now, simulate API call
       await new Promise(resolve => setTimeout(resolve, 100))
-      // TODO: Replace with actual API call
-      // const response = await api.post('/auth/login', credentials)
       const dummyToken = 'dummy-token'
       this.setToken(dummyToken)
       this.setUser({ email: credentials.email })
@@ -49,10 +45,10 @@ const actions = {
     state.loading = true
     state.error = null
     try {
-      // For now, simulate API call
+      // Simulate API call and use credentials
       await new Promise(resolve => setTimeout(resolve, 100))
       // TODO: Replace with actual API call
-      // const response = await api.post('/auth/register', credentials)
+      await api.post('/auth/register', credentials)
       return true
     } catch (error) {
       state.error = error.response?.data?.message || 'Registration failed'
@@ -68,11 +64,14 @@ const actions = {
   },
 
   async checkAuth() {
-    if (!state.token) return false
+    if (!state.token) {
+      return false
+    }
+    
     try {
       // TODO: Replace with actual API call
-      // const response = await api.get('/auth/me')
-      // this.setUser(response.data)
+      const response = await api.get('/auth/me')
+      this.setUser(response.data)
       return true
     } catch (error) {
       this.logout()
