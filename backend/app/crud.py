@@ -3,6 +3,7 @@ from . import models, schemas
 from .auth import get_password_hash
 from typing import List, Optional
 
+
 def get_user(db: Session, user_id: int):
     return db.query(models.User).filter(models.User.id == user_id).first()
 

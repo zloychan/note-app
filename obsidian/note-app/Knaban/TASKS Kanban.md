@@ -46,6 +46,7 @@ kanban-plugin: board
 - [ ] [[3.1. Initialize Vue.js Application]]
 
 
+
 ## done
 
 - [ ] [[1.1. Initialize Git Repository]]
@@ -61,6 +62,7 @@ kanban-plugin: board
 - [ ] [[2.6. Implement Authentication]]
 - [ ] [[2.7. Develop CRUD Operations for Notes]]
 - [ ] [[2.8. Test API Endpoints]]
+
 
 
 

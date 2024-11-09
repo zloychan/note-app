@@ -33,7 +33,6 @@ app.add_middleware(
 # Add after existing middleware configuration
 app.include_router(auth.router)
 app.include_router(notes.router)
-
 @app.get("/")
 async def root():
     return {"message": "Welcome to Notes API"}
