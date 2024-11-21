@@ -8,6 +8,8 @@ A simple notes application where users can register, log in, and manage their pe
 
 ## Table of Contents
 
+test
+
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Project Structure](#project-structure)
